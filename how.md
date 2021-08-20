@@ -1,7 +1,7 @@
 ## Init
-
+```sh
 npx react-native init chat_realtime --template react-native-template-typescript
-
+```
 ## Dotenv
 
 ```sh
@@ -20,5 +20,12 @@ declare module 'react-native-dotenv' {
 }
 ```
 ## Firebase
-
+```sh
 npm i firebase
+```
+
+## NativeBAse - https://docs.nativebase.io/
+
+```sh
+npm install native-base react-native-svg styled-components styled-system react-native-safe-area-context
+```
