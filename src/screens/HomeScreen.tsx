@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, SafeAreaView } from 'react-native';
-import { Container, Center } from 'native-base';
+import { StyleSheet, SafeAreaView, View } from 'react-native';
 import Login from './Login';
 import Chat from './Chat';
 
@@ -8,9 +7,9 @@ const HomeScreen = () => {
   const [userName, setUserName] = useState(null);
 
   return (
-    <Container style={styles.container}>
+    <View style={styles.container}>
       {!userName ? <Login setUserName={setUserName} /> : <Chat />}
-    </Container>
+    </View>
   );
 };
 

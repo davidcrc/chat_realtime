@@ -5,8 +5,9 @@ import {
   StyleSheet,
   TouchableOpacity,
   Platform,
+  TextInput,
 } from 'react-native';
-import { Input as InputNB, Icon } from 'native-base';
+import {  IconButton } from 'react-native-paper';
 
 interface InputProps {}
 
@@ -14,15 +15,18 @@ const Input: React.FunctionComponent<InputProps> = props => {
   return (
     <View style={styles.container}>
       <View style={styles.itemInput}>
-        <InputNB
-          variant="unstyled"
+        <TextInput
           placeholder="Mensaje"
-          style={styles.input}
           placeholderTextColor="grey"
+          style={styles.input}
+          onChangeText={text => console.log('damm', text)}
         />
-        <TouchableOpacity>
-          <Icon name="send" style={styles.iconSend} />
-        </TouchableOpacity>
+        <IconButton
+          icon="send"
+          color="#fff"
+          size={20}
+          onPress={() => console.log('Pressed')}
+        />
       </View>
     </View>
   );
@@ -32,20 +36,19 @@ export default Input;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#16202b',
-    paddingBottom: Platform.OS === "ios"? 20 : 0,
+    paddingBottom: Platform.OS === 'ios' ? 20 : 0,
     paddingHorizontal: 20,
+    width: '95%',
   },
   itemInput: {
-    display: 'flex',
+    justifyContent: 'space-between',
     flexDirection: 'row',
     alignItems: 'center',
     borderColor: '#16202b',
   },
   input: {
     color: '#fff',
-  },
-  iconSend: {
-    color: "#fff",
+    backgroundColor: '#16202b',
+    width: '100%',
   },
 });

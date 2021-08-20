@@ -1,14 +1,13 @@
 import React from 'react';
-import { NativeBaseProvider } from 'native-base';
+import { Provider as PaperProvider } from 'react-native-paper';
 import HomeScreen from './src/screens/HomeScreen';
-
 interface AppProps {}
 
 const App: React.FunctionComponent<AppProps> = props => {
   return (
-    <NativeBaseProvider>
+    <PaperProvider>
       <HomeScreen />
-    </NativeBaseProvider>
+    </PaperProvider>
   );
 };
 

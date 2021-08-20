@@ -24,8 +24,20 @@ declare module 'react-native-dotenv' {
 npm i firebase
 ```
 
-## NativeBAse - https://docs.nativebase.io/
+## Native paper
+```sh
+npm install react-native-paper
+```
+
+> babel.config.js
+```sh 
+env: {
+    production: {
+      plugins: ['react-native-paper/babel'],
+    },
+  },
+```
 
 ```sh
-npm install native-base react-native-svg styled-components styled-system react-native-safe-area-context
+react-native-vector-icons
 ```
