@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import letterColors from '../utils/letterColors';
+import moment from 'moment';
 
 interface MessageProps {
   name: string;
@@ -10,16 +11,16 @@ interface MessageProps {
 const Message: React.FunctionComponent<MessageProps> = props => {
   const { message, name } = props;
   const { userName, text, title, time } = message;
-  const [bgColorLetter, setBgColorLetter] = useState<Array<number>>()
+  const [bgColorLetter, setBgColorLetter] = useState<Array<number>>();
 
   const thisIsMe = name === userName;
 
   useEffect(() => {
     const char = userName.trim()[0].toUpperCase();
     const indexLetter = char.charCodeAt() - 65;
-    console.log(indexLetter)
-    setBgColorLetter(letterColors[indexLetter])
-  }, [])
+    console.log(indexLetter);
+    setBgColorLetter(letterColors[indexLetter]);
+  }, []);
 
   const conditionalStyle = {
     container: {
@@ -35,24 +36,26 @@ const Message: React.FunctionComponent<MessageProps> = props => {
   };
 
   const bcolorUser = {
-    backgroundColor: `rgb(${bgColorLetter})`
+    backgroundColor: `rgb(${bgColorLetter})`,
+  };
+
+  const displayDate: any = (time: number) => {
+    return moment(time).format('LLL')
   }
 
   return (
     <View style={[styles.container, conditionalStyle.container]}>
       {!thisIsMe && (
-        <View style={[styles.letterView, bcolorUser  ]}>
+        <View style={[styles.letterView, bcolorUser]}>
           <Text style={styles.letter}>{userName.substr(0, 1)}</Text>
         </View>
       )}
       <View style={[styles.vieMessage, conditionalStyle.viewMessage]}>
-        <Text style={[styles.message, conditionalStyle.message]}>
-          Mensaje {text}
-        </Text>
+        <Text style={[styles.message, conditionalStyle.message]}>{text}</Text>
         <Text
           style={[styles.time, thisIsMe ? styles.timeLeft : styles.timeRight]}>
           {' '}
-          {time}
+           {displayDate(time)}
         </Text>
       </View>
     </View>

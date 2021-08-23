@@ -4,6 +4,7 @@ import Input from '../components/Input';
 import firebase from '../utils/constants';
 import lodash, { map } from 'lodash';
 import Message from '../components/Message';
+import { MessageApi } from '../api/api';
 
 interface ChatProps {
   userName: string;
@@ -11,7 +12,7 @@ interface ChatProps {
 
 const Chat: React.FunctionComponent<ChatProps> = props => {
   const { userName } = props
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState<Array<MessageApi>>([]);
   const chatScrollRef = useRef()
 
   useEffect(() => {
@@ -29,10 +30,17 @@ const Chat: React.FunctionComponent<ChatProps> = props => {
 
   const sendMessage = async (message: string) => {
     console.log('send Message::', message);
+    const date = new Date()
+    let sms: MessageApi ;
+    sms = {
+      userName: userName,
+      text: message,
+      time: date.getTime(),
+    }
     firebase
       .database()
       .ref('general')
-      .push({ userName , text: message, time: 'NULL' });
+      .push(sms);
   };
 
   return (
