@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -6,12 +6,27 @@ import {
   TouchableOpacity,
   Platform,
   TextInput,
+  Dimensions,
 } from 'react-native';
-import {  IconButton } from 'react-native-paper';
+import { IconButton } from 'react-native-paper';
 
-interface InputProps {}
+const {width} = Dimensions.get('window')
+interface InputProps {
+  sendMessage: any;
+}
 
 const Input: React.FunctionComponent<InputProps> = props => {
+  const { sendMessage } = props;
+  const [message, setMessage] = useState('');
+
+  const onSubmit = () => {
+    // console.log('sms', message);
+    if(message.length > 0) {
+      sendMessage(message)
+      setMessage('')
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.itemInput}>
@@ -19,14 +34,13 @@ const Input: React.FunctionComponent<InputProps> = props => {
           placeholder="Mensaje"
           placeholderTextColor="grey"
           style={styles.input}
-          onChangeText={text => console.log('damm', text)}
+          value={message}
+          onChangeText={text => setMessage(text) }
+          numberOfLines={1}
         />
-        <IconButton
-          icon="send"
-          color="#fff"
-          size={20}
-          onPress={() => console.log('Pressed')}
-        />
+        <TouchableOpacity style={{ }}  onPress={() => onSubmit()}>
+          <IconButton icon="send" color="#fff" size={20} />
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -37,8 +51,8 @@ export default Input;
 const styles = StyleSheet.create({
   container: {
     paddingBottom: Platform.OS === 'ios' ? 20 : 0,
-    paddingHorizontal: 20,
-    width: '95%',
+    paddingHorizontal: 10,
+    // width: width,
   },
   itemInput: {
     justifyContent: 'space-between',
@@ -49,6 +63,5 @@ const styles = StyleSheet.create({
   input: {
     color: '#fff',
     backgroundColor: '#16202b',
-    width: '100%',
   },
 });

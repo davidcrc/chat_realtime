@@ -41,3 +41,10 @@ env: {
 ```sh
 react-native-vector-icons
 ```
+
+## Moment
+
+```sh
+npm i moment
+npm i @types/moment
+```
