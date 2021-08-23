@@ -27,7 +27,7 @@ const Message: React.FunctionComponent<MessageProps> = props => {
       justifyContent: thisIsMe ? 'flex-end' : 'flex-start',
     },
     viewMessage: {
-      backgroundColor: thisIsMe ? '#f0f0f1' : '#4b86f0',
+      backgroundColor: thisIsMe ? '#f0f0f1' : '#4b66f0',
     },
     message: {
       color: thisIsMe ? '#000' : '#fff',
