@@ -63,5 +63,6 @@ const styles = StyleSheet.create({
   input: {
     color: '#fff',
     backgroundColor: '#16202b',
+    maxWidth: "90%"
   },
 });

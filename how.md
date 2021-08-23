@@ -48,3 +48,12 @@ react-native-vector-icons
 npm i moment
 npm i @types/moment
 ```
+
+## lodash
+```sh
+npm i lodash
+```
+
+```sh
+npm i @types/lodash
+```

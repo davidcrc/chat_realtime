@@ -10,9 +10,11 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "@types/lodash": "^4.14.172",
     "@types/moment": "^2.13.0",
     "@types/react-native-dotenv": "^0.2.0",
     "firebase": "^8.10.0",
+    "lodash": "^4.17.21",
     "moment": "^2.29.1",
     "react": "17.0.1",
     "react-native": "0.64.1",
