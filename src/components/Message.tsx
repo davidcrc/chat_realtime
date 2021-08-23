@@ -2,23 +2,23 @@ import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import letterColors from '../utils/letterColors';
 import moment from 'moment';
+import { MessageApi } from '../api/api';
 
 interface MessageProps {
   name: string;
-  message: any;
+  message: MessageApi;
 }
 
 const Message: React.FunctionComponent<MessageProps> = props => {
   const { message, name } = props;
-  const { userName, text, title, time } = message;
+  const { userName, text, time } = message;
   const [bgColorLetter, setBgColorLetter] = useState<Array<number>>();
 
   const thisIsMe = name === userName;
 
   useEffect(() => {
     const char = userName.trim()[0].toUpperCase();
-    const indexLetter = char.charCodeAt() - 65;
-    console.log(indexLetter);
+    const indexLetter = char.charCodeAt(0) - 65;
     setBgColorLetter(letterColors[indexLetter]);
   }, []);
 
@@ -40,8 +40,8 @@ const Message: React.FunctionComponent<MessageProps> = props => {
   };
 
   const displayDate: any = (time: number) => {
-    return moment(time).format('LLL')
-  }
+    return moment(time).format('MM/DD/YYYY hh:mm:s a');
+  };
 
   return (
     <View style={[styles.container, conditionalStyle.container]}>
@@ -55,7 +55,7 @@ const Message: React.FunctionComponent<MessageProps> = props => {
         <Text
           style={[styles.time, thisIsMe ? styles.timeLeft : styles.timeRight]}>
           {' '}
-           {displayDate(time)}
+          {displayDate(time)}
         </Text>
       </View>
     </View>

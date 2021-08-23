@@ -57,3 +57,8 @@ npm i lodash
 ```sh
 npm i @types/lodash
 ```
+
+## Sound - https://github.com/johnsonsu/react-native-sound-player
+```sh
+npm i react-native-sound-player
+```

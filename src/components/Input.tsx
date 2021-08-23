@@ -50,7 +50,6 @@ export default Input;
 
 const styles = StyleSheet.create({
   container: {
-    paddingBottom: Platform.OS === 'ios' ? 20 : 0,
     paddingHorizontal: 10,
     // width: width,
   },
@@ -63,6 +62,7 @@ const styles = StyleSheet.create({
   input: {
     color: '#fff',
     backgroundColor: '#16202b',
-    maxWidth: "90%"
+    width: "100%",
+    maxWidth: "90%",
   },
 });

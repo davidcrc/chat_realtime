@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { StyleSheet, View, Text, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, ScrollView, SafeAreaView } from 'react-native';
 import Input from '../components/Input';
 import firebase from '../utils/constants';
 import lodash, { map } from 'lodash';
@@ -11,50 +11,47 @@ interface ChatProps {
 }
 
 const Chat: React.FunctionComponent<ChatProps> = props => {
-  const { userName } = props
+  const { userName } = props;
   const [messages, setMessages] = useState<Array<MessageApi>>([]);
-  const chatScrollRef = useRef()
+  const [sound, setSound] = useState<Boolean>(false);
+  const chatScrollRef = useRef();
 
   useEffect(() => {
     const chat = firebase.database().ref('general');
     chat.on('value', snapshot => {
-      console.log(snapshot.val());
+      // console.log(snapshot.val());
       setMessages(snapshot.val());
     });
+    setSound(true);
+    // console.log("AHORA SUENA")
   }, []);
 
   useEffect(() => {
     // REVIEW: esto puede mejorar
-    chatScrollRef.current.scrollTo({ y: 10000000 })
-  }, [messages])
+    chatScrollRef.current.scrollTo({ y: 10000000 });
+  }, [messages]);
 
   const sendMessage = async (message: string) => {
     console.log('send Message::', message);
-    const date = new Date()
-    let sms: MessageApi ;
+    const date = new Date();
+    let sms: MessageApi;
     sms = {
       userName: userName,
       text: message,
       time: date.getTime(),
-    }
-    firebase
-      .database()
-      .ref('general')
-      .push(sms);
+    };
+    firebase.database().ref('general').push(sms);
   };
 
   return (
-    <>
-      {/* TODO: cabecera */}
-      <View style={styles.content}>
-        <ScrollView style={styles.chatView} ref={chatScrollRef} >
-          {map(messages, (message, index)=> (
-            <Message key={index} message={message} name={userName} />
-          ))}
-        </ScrollView>
-        <Input sendMessage={sendMessage} />
-      </View>
-    </>
+    <SafeAreaView style={styles.content}>
+      <ScrollView style={styles.chatView} ref={chatScrollRef}>
+        {map(messages, (message, index) => (
+          <Message key={index} message={message} name={userName} />
+        ))}
+      </ScrollView>
+      <Input sendMessage={sendMessage} />
+    </SafeAreaView>
   );
 };
 
@@ -66,6 +63,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   chatView: {
-    backgroundColor: '#1b2734'
+    backgroundColor: '#1b2734',
   },
 });

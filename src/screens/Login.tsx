@@ -14,7 +14,7 @@ const Login = (props: Props) => {
   const [name, setName] = useState('');
 
   const onSubmit = () => {
-    console.log('onSubmit', name);
+    // console.log('onSubmit', name);
     setUserName(name);
   };
 
