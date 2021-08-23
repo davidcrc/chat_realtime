@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
+import letterColors from '../utils/letterColors';
 
 interface MessageProps {
   name: string;
@@ -9,7 +10,16 @@ interface MessageProps {
 const Message: React.FunctionComponent<MessageProps> = props => {
   const { message, name } = props;
   const { userName, text, title, time } = message;
+  const [bgColorLetter, setBgColorLetter] = useState<Array<number>>()
+
   const thisIsMe = name === userName;
+
+  useEffect(() => {
+    const char = userName.trim()[0].toUpperCase();
+    const indexLetter = char.charCodeAt() - 65;
+    console.log(indexLetter)
+    setBgColorLetter(letterColors[indexLetter])
+  }, [])
 
   const conditionalStyle = {
     container: {
@@ -24,11 +34,26 @@ const Message: React.FunctionComponent<MessageProps> = props => {
     },
   };
 
+  const bcolorUser = {
+    backgroundColor: `rgb(${bgColorLetter})`
+  }
+
   return (
     <View style={[styles.container, conditionalStyle.container]}>
-      <View style={[styles.vieMessage, conditionalStyle.viewMessage ]} >
-        <Text style={[styles.message, conditionalStyle.message ]} >Mensaje {text}</Text>
-        <Text style={[styles.time, thisIsMe ? styles.timeLeft : styles.timeRight]} > {time}</Text>
+      {!thisIsMe && (
+        <View style={[styles.letterView, bcolorUser  ]}>
+          <Text style={styles.letter}>{userName.substr(0, 1)}</Text>
+        </View>
+      )}
+      <View style={[styles.vieMessage, conditionalStyle.viewMessage]}>
+        <Text style={[styles.message, conditionalStyle.message]}>
+          Mensaje {text}
+        </Text>
+        <Text
+          style={[styles.time, thisIsMe ? styles.timeLeft : styles.timeRight]}>
+          {' '}
+          {time}
+        </Text>
       </View>
     </View>
   );
@@ -42,11 +67,25 @@ const styles = StyleSheet.create({
     margin: 10,
     alignItems: 'center',
   },
+  letterView: {
+    height: 35,
+    width: 35,
+    borderRadius: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 10,
+    backgroundColor: 'red',
+  },
+  letter: {
+    fontSize: 18,
+    color: '#fff',
+    textTransform: 'uppercase',
+  },
   vieMessage: {
     borderRadius: 10,
     minHeight: 35,
-    minWidth: "40%",
-    maxWidth: "80%",
+    minWidth: '40%',
+    maxWidth: '80%',
   },
   message: {
     padding: 5,
@@ -62,14 +101,14 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   right: {
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
   },
   timeRight: {
     right: 8,
-    color: 'white'
+    color: 'white',
   },
   timeLeft: {
     left: 8,
-    color: 'grey'
+    color: 'grey',
   },
 });
