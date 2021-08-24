@@ -2,9 +2,19 @@
 
   App que se conecta a una DB en firebase y guarda mensajes con solo ingresar un nombre
 
-# Run
-  npm start
-  npm run android
+## Run
+```sh
+npm start
+  ```
+```sh
+npm run android
+```
+## config 
 
-# config 
-  llenar un archivo .env con datos de ejemplo del .env.example 
+llenar un archivo .env con datos de ejemplo del .env.example 
+
+## TODO
+
+- focus scroll in chat (mejorar)
+- paginacion de mensajes
+- sonido de notificacion
