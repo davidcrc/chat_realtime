@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import Input from '../components/Input';
 import firebase from '../utils/constants';
-import lodash, { map } from 'lodash';
+import { map } from 'lodash';
 import Message from '../components/Message';
 import { MessageApi } from '../api/api';
 import { ActivityIndicator } from 'react-native-paper';

@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { IconButton } from 'react-native-paper';
 
-const {width} = Dimensions.get('window')
+const { width } = Dimensions.get('window');
 interface InputProps {
   sendMessage: any;
 }
@@ -21,9 +21,9 @@ const Input: React.FunctionComponent<InputProps> = props => {
 
   const onSubmit = () => {
     // console.log('sms', message);
-    if(message.length > 0) {
-      sendMessage(message)
-      setMessage('')
+    if (message.length > 0) {
+      sendMessage(message);
+      setMessage('');
     }
   };
 
@@ -31,14 +31,14 @@ const Input: React.FunctionComponent<InputProps> = props => {
     <View style={styles.container}>
       <View style={styles.itemInput}>
         <TextInput
-          placeholder="Mensaje"
+          placeholder="Mensaje ..."
           placeholderTextColor="grey"
           style={styles.input}
           value={message}
-          onChangeText={text => setMessage(text) }
+          onChangeText={text => setMessage(text)}
           numberOfLines={1}
         />
-        <TouchableOpacity style={{ }}  onPress={() => onSubmit()}>
+        <TouchableOpacity style={{}} onPress={() => onSubmit()}>
           <IconButton icon="send" color="#fff" size={20} />
         </TouchableOpacity>
       </View>
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     backgroundColor: '#16202b',
     height: 60,
-    width: "100%",
-    maxWidth: "90%",
+    width: '100%',
+    maxWidth: '90%',
   },
 });

@@ -1,6 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, SafeAreaView, StatusBar, Image, TextInput } from 'react-native';
-import {  Button } from 'react-native-paper';
+import React, { useState } from 'react';
+import {
+  StyleSheet,
+  View,
+  SafeAreaView,
+  StatusBar,
+  Image,
+  TextInput,
+} from 'react-native';
+import { Button } from 'react-native-paper';
 const logoApp = require('../assets/chatLogo.png');
 // import logoApp from '../assets/chatLogo.png';
 
@@ -26,7 +33,7 @@ const Login = (props: Props) => {
       </View>
       <TextInput
         placeholder="Nombre de usuario"
-        style={{ color: '#000', backgroundColor: '#fff', padding: 20}}
+        style={{ color: '#000', backgroundColor: '#fff', padding: 20 }}
         value={name}
         onChangeText={text => setName(text)}
       />

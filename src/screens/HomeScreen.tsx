@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, SafeAreaView, View } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, View } from 'react-native';
 import Login from './Login';
 import Chat from './Chat';
 
@@ -8,7 +8,11 @@ const HomeScreen = () => {
 
   return (
     <View style={styles.container}>
-      {!userName ? <Login setUserName={setUserName} /> : <Chat userName={userName} />}
+      {!userName ? (
+        <Login setUserName={setUserName} />
+      ) : (
+        <Chat userName={userName} />
+      )}
     </View>
   );
 };
@@ -22,6 +26,5 @@ const styles = StyleSheet.create({
     width: '100%',
     flex: 1,
     justifyContent: 'space-evenly',
-
   },
 });
